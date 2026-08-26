@@ -4,10 +4,13 @@ import { useState } from "react";
 import { ProductCard } from "@/components/shop/ProductCard";
 
 interface ProductData {
+  id: string;
   slug: string;
   name: string;
   price: number;
   images: string[];
+  sizes: string[];
+  featured: boolean;
   category: { slug: string; name: string };
 }
 
@@ -59,8 +62,8 @@ export function ShopGrid({
             Aucun article dans cette catégorie pour l&apos;instant.
           </p>
         )}
-        {filtered.map((product) => (
-          <ProductCard key={product.slug} product={product} />
+        {filtered.map((product, i) => (
+          <ProductCard key={product.slug} product={product} index={i} />
         ))}
       </div>
     </div>
