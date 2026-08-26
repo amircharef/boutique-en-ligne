@@ -54,8 +54,10 @@ function getSnapshot() {
   return cachedItems;
 }
 
+const EMPTY_CART: CartItem[] = [];
+
 function getServerSnapshot(): CartItem[] {
-  return [];
+  return EMPTY_CART;
 }
 
 function sameLine(a: { productId: string; size: string | null }, b: typeof a) {

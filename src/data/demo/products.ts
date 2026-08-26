@@ -1,5 +1,7 @@
 // Seed data for prisma/seed.ts — `order` is assigned at seed time (array index).
-// Photos : Wikimedia Commons (licences libres), URLs vérifiées avant intégration.
+// Photos : sourcées sur Wikimedia Commons (licences libres), puis re-hébergées
+// dans public/products/ (voir scripts/fetch-product-images.mjs) pour éviter le
+// rate-limiting de Wikimedia sur les images hotlinkées.
 export const demoCategories = [
   {
     id: "cat-femme",
@@ -13,9 +15,7 @@ export const demoCategories = [
         description:
           "Robe légère à motifs, coupe fluide, idéale pour les journées chaudes. Tissu respirant, doublure intérieure.",
         price: 4500,
-        images: [
-          "https://upload.wikimedia.org/wikipedia/commons/3/37/Assorted_Women%27s_Dresses_with_Different_Patterns_and_Colors.jpg",
-        ],
+        images: ["/products/robe-imprimee-estivale.jpg"],
         sizes: ["S", "M", "L"],
         stock: 12,
         featured: true,
@@ -27,9 +27,7 @@ export const demoCategories = [
         description:
           "Ensemble chemisier ample et jupe taille haute, parfait pour un look bureau ou sortie. Coloris bleu intemporel.",
         price: 3200,
-        images: [
-          "https://upload.wikimedia.org/wikipedia/commons/0/03/Woman_wearing_blue_blouse_and_wool_mini_skirt.jpg",
-        ],
+        images: ["/products/chemisier-jupe-taille-haute.jpg"],
         sizes: ["S", "M", "L"],
         stock: 8,
         featured: false,
@@ -41,9 +39,7 @@ export const demoCategories = [
         description:
           "Blazer structuré coupe cintrée, pour un style professionnel affirmé. Se porte seul ou sur une chemise.",
         price: 5800,
-        images: [
-          "https://upload.wikimedia.org/wikipedia/commons/6/69/Woman_in_typical_Office_Lady_attire_%2820240518160421%29.jpg",
-        ],
+        images: ["/products/blazer-tailleur-femme.jpg"],
         sizes: ["S", "M", "L", "XL"],
         stock: 6,
         featured: false,
@@ -62,9 +58,7 @@ export const demoCategories = [
         description:
           "Ensemble complet veste, chemise et cravate assortie, coupe slim. Pour un rendu impeccable en toute occasion.",
         price: 7200,
-        images: [
-          "https://upload.wikimedia.org/wikipedia/commons/e/e5/Slim_man_wearing_a_jacket%2C_shirt_and_tie_%281486185%29.jpg",
-        ],
+        images: ["/products/costume-chemise-cravate.jpg"],
         sizes: ["M", "L", "XL"],
         stock: 5,
         featured: true,
@@ -76,9 +70,7 @@ export const demoCategories = [
         description:
           "Chemise surchemise casual, à associer avec un jean pour un style décontracté et soigné au quotidien.",
         price: 2900,
-        images: [
-          "https://upload.wikimedia.org/wikipedia/commons/e/e9/Man_wearing_green_shirt-jacket%2C_blue_jeans_and_desert_boots_01.jpg",
-        ],
+        images: ["/products/chemise-decontractee-homme.jpg"],
         sizes: ["S", "M", "L", "XL"],
         stock: 10,
         featured: false,
@@ -90,9 +82,7 @@ export const demoCategories = [
         description:
           "Veste blazer ajustée, coupe moderne, à porter sur une chemise pour un look business casual réussi.",
         price: 6500,
-        images: [
-          "https://upload.wikimedia.org/wikipedia/commons/6/61/Slim_man_wearing_a_jacket%2C_shirt_and_tie_%281486180%29.jpg",
-        ],
+        images: ["/products/veste-blazer-homme.jpg"],
         sizes: ["M", "L", "XL"],
         stock: 7,
         featured: false,
@@ -111,7 +101,7 @@ export const demoCategories = [
         description:
           "Sac à main en cuir, compartiments intérieurs multiples, bandoulière ajustable. Un essentiel du quotidien.",
         price: 3800,
-        images: ["https://upload.wikimedia.org/wikipedia/commons/e/e5/Black_handbag.jpg"],
+        images: ["/products/sac-a-main-cuir.jpg"],
         sizes: [],
         stock: 15,
         featured: true,
@@ -123,7 +113,7 @@ export const demoCategories = [
         description:
           "Montre au design épuré, bracelet ajustable, mouvement précis. S'accorde avec toutes les tenues.",
         price: 4200,
-        images: ["https://upload.wikimedia.org/wikipedia/commons/5/57/Watch_photo.jpg"],
+        images: ["/products/montre-classique.jpg"],
         sizes: [],
         stock: 9,
         featured: false,
@@ -134,9 +124,7 @@ export const demoCategories = [
         name: "Ceinture en Cuir",
         description: "Ceinture en cuir véritable, boucle métallique, disponible en plusieurs tailles.",
         price: 1500,
-        images: [
-          "https://upload.wikimedia.org/wikipedia/commons/c/c5/DFC_4174_A_close-up_of_leather_belts_and_bags_neatly_displayed_at_a_bustling_outdoor_market_stall.jpg",
-        ],
+        images: ["/products/ceinture-en-cuir.jpg"],
         sizes: ["S", "M", "L"],
         stock: 20,
         featured: false,
