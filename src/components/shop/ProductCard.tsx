@@ -12,6 +12,7 @@ interface ProductCardData {
   slug: string;
   name: string;
   price: number;
+  compareAtPrice?: number | null;
   images: string[];
   sizes: string[];
   featured: boolean;
@@ -29,6 +30,10 @@ export function ProductCard({
   const [added, setAdded] = useState(false);
   const { addItem } = useCart();
   const image = product.images[0];
+  const onSale = !!product.compareAtPrice && product.compareAtPrice > product.price;
+  const discountPct = onSale
+    ? Math.round((1 - product.price / product.compareAtPrice!) * 100)
+    : 0;
 
   function quickAdd(e: MouseEvent) {
     e.preventDefault();
@@ -79,14 +84,21 @@ export function ProductCard({
             </div>
           )}
 
-          {product.featured && (
-            <span className="absolute top-3 left-3 flex items-center gap-1 rounded-full bg-background/90 px-2.5 py-1 text-[10px] font-medium tracking-wide text-accent-dark uppercase backdrop-blur">
-              <Sparkles size={10} />
-              Populaire
-            </span>
-          )}
+          <div className="absolute top-3 left-3 flex flex-col items-start gap-1.5">
+            {product.featured && (
+              <span className="flex items-center gap-1 rounded-full bg-background/90 px-2.5 py-1 text-[10px] font-medium tracking-wide text-accent-dark uppercase backdrop-blur">
+                <Sparkles size={10} />
+                Populaire
+              </span>
+            )}
+            {onSale && (
+              <span className="rounded-full bg-red-500/90 px-2.5 py-1 text-[10px] font-medium tracking-wide text-white uppercase backdrop-blur">
+                -{discountPct}%
+              </span>
+            )}
+          </div>
 
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/55 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-black/55 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
           <AnimatePresence>
             {hovered && (
@@ -109,7 +121,12 @@ export function ProductCard({
             {product.category.name}
           </p>
           <h3 className="font-display mt-1 font-semibold">{product.name}</h3>
-          <p className="mt-1.5 text-sm text-accent-dark">{formatDA(product.price)}</p>
+          <div className="mt-1.5 flex items-center gap-2">
+            <p className="text-sm text-accent-dark">{formatDA(product.price)}</p>
+            {onSale && (
+              <p className="text-xs text-subtle line-through">{formatDA(product.compareAtPrice!)}</p>
+            )}
+          </div>
         </div>
       </Link>
     </motion.div>

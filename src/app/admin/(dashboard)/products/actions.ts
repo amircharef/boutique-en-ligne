@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
+import { Prisma } from "@/generated/prisma/client";
 import { productFormSchema } from "@/lib/validations";
 
 export interface ActionState {
@@ -15,8 +16,12 @@ function parseForm(formData: FormData) {
     slug: formData.get("slug"),
     description: formData.get("description"),
     price: formData.get("price"),
+    compareAtPrice: formData.get("compareAtPrice") || undefined,
     images: formData.get("images") ?? "",
     sizes: formData.get("sizes") || undefined,
+    outOfStockSizes: formData.get("outOfStockSizes") || undefined,
+    tags: formData.get("tags") || undefined,
+    colors: formData.get("colors") || undefined,
     stock: formData.get("stock") || 0,
     categoryId: formData.get("categoryId"),
     featured: formData.get("featured") === "on",
@@ -55,8 +60,12 @@ export async function createProduct(
         slug: data.slug,
         description: data.description,
         price: data.price,
+        compareAtPrice: data.compareAtPrice ?? null,
         images: data.images,
         sizes: data.sizes,
+        outOfStockSizes: data.outOfStockSizes,
+        tags: data.tags,
+        colors: data.colors ?? undefined,
         stock: data.stock,
         categoryId: data.categoryId,
         featured: data.featured ?? false,
@@ -89,8 +98,12 @@ export async function updateProduct(
         slug: data.slug,
         description: data.description,
         price: data.price,
+        compareAtPrice: data.compareAtPrice ?? null,
         images: data.images,
         sizes: data.sizes,
+        outOfStockSizes: data.outOfStockSizes,
+        tags: data.tags,
+        colors: data.colors ?? Prisma.JsonNull,
         stock: data.stock,
         categoryId: data.categoryId,
         featured: data.featured ?? false,

@@ -11,23 +11,8 @@ export const categoryFormSchema = z.object({
 
 export type CategoryFormInput = z.infer<typeof categoryFormSchema>;
 
-export const productFormSchema = z.object({
-  name: z.string().min(2, "Nom trop court."),
-  slug: z
-    .string()
-    .min(2, "Slug trop court.")
-    .regex(/^[a-z0-9-]+$/, "Minuscules, chiffres et tirets uniquement."),
-  description: z.string().min(10, "Description trop courte."),
-  price: z.coerce.number().int().min(0, "Prix invalide."),
-  images: z
-    .string()
-    .transform((v) =>
-      v
-        .split("\n")
-        .map((s) => s.trim())
-        .filter(Boolean),
-    ),
-  sizes: z
+const commaList = () =>
+  z
     .string()
     .optional()
     .transform((v) =>
@@ -37,7 +22,60 @@ export const productFormSchema = z.object({
             .map((s) => s.trim())
             .filter(Boolean)
         : [],
+    );
+
+export const colorSchema = z.object({
+  name: z.string().min(1),
+  hex: z.string().min(1),
+  images: z.array(z.string()).min(1),
+});
+
+export type ColorVariant = z.infer<typeof colorSchema>;
+
+export const productFormSchema = z.object({
+  name: z.string().min(2, "Nom trop court."),
+  slug: z
+    .string()
+    .min(2, "Slug trop court.")
+    .regex(/^[a-z0-9-]+$/, "Minuscules, chiffres et tirets uniquement."),
+  description: z.string().min(10, "Description trop courte."),
+  price: z.coerce.number().int().min(0, "Prix invalide."),
+  compareAtPrice: z.coerce.number().int().min(0).optional().nullable(),
+  images: z
+    .string()
+    .transform((v) =>
+      v
+        .split("\n")
+        .map((s) => s.trim())
+        .filter(Boolean),
     ),
+  sizes: commaList(),
+  outOfStockSizes: commaList(),
+  tags: commaList(),
+  // Format admin : une ligne par couleur "Nom|#hex|url1,url2"
+  colors: z
+    .string()
+    .optional()
+    .transform((v): ColorVariant[] | undefined => {
+      if (!v?.trim()) return undefined;
+      const parsed = v
+        .split("\n")
+        .map((line) => line.trim())
+        .filter(Boolean)
+        .map((line) => {
+          const [name, hex, urls] = line.split("|").map((s) => s?.trim() ?? "");
+          return {
+            name: name ?? "",
+            hex: hex ?? "#000000",
+            images: (urls ?? "")
+              .split(",")
+              .map((s) => s.trim())
+              .filter(Boolean),
+          };
+        })
+        .filter((c) => c.name && c.images.length > 0);
+      return parsed.length > 0 ? parsed : undefined;
+    }),
   stock: z.coerce.number().int().min(0).optional().default(0),
   categoryId: z.string().min(1, "Catégorie requise."),
   featured: z.boolean().optional(),

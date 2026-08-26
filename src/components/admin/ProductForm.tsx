@@ -19,17 +19,40 @@ function slugify(value: string) {
     .replace(/(^-|-$)/g, "");
 }
 
+interface ColorVariant {
+  name: string;
+  hex: string;
+  images: string[];
+}
+
 interface ProductData {
   name: string;
   slug: string;
   description: string;
   price: number;
+  compareAtPrice?: number | null;
   images: string[];
   sizes: string[];
+  outOfStockSizes?: string[];
+  tags?: string[];
+  colors?: unknown;
   stock: number;
   categoryId: string;
   featured: boolean;
   order: number;
+}
+
+function serializeColors(colors: unknown): string {
+  if (!Array.isArray(colors)) return "";
+  return colors
+    .map((c) => {
+      if (!c || typeof c !== "object") return null;
+      const variant = c as Partial<ColorVariant>;
+      if (!variant.name || !Array.isArray(variant.images)) return null;
+      return `${variant.name}|${variant.hex ?? "#000000"}|${variant.images.join(",")}`;
+    })
+    .filter(Boolean)
+    .join("\n");
 }
 
 export function ProductForm({
@@ -104,6 +127,20 @@ export function ProductForm({
           />
         </div>
         <div>
+          <label className={labelClass}>Prix barré avant promo (DA, optionnel)</label>
+          <input
+            type="number"
+            name="compareAtPrice"
+            min={0}
+            defaultValue={product?.compareAtPrice ?? undefined}
+            placeholder="Laisser vide si pas de promo"
+            className={inputClass}
+          />
+        </div>
+      </div>
+
+      <div className="grid gap-5 sm:grid-cols-2">
+        <div>
           <label className={labelClass}>Catégorie *</label>
           <select
             name="categoryId"
@@ -120,6 +157,15 @@ export function ProductForm({
               </option>
             ))}
           </select>
+        </div>
+        <div>
+          <label className={labelClass}>Sous-catégories / mots-clés (virgules)</label>
+          <input
+            name="tags"
+            placeholder="jeans, denim"
+            defaultValue={product?.tags?.join(", ")}
+            className={inputClass}
+          />
         </div>
       </div>
 
@@ -154,6 +200,28 @@ export function ProductForm({
             className={inputClass}
           />
         </div>
+      </div>
+
+      <div>
+        <label className={labelClass}>Tailles en rupture (parmi celles ci-dessus, optionnel)</label>
+        <input
+          name="outOfStockSizes"
+          placeholder="S, XL"
+          defaultValue={product?.outOfStockSizes?.join(", ")}
+          className={inputClass}
+        />
+      </div>
+
+      <div>
+        <label className={labelClass}>
+          Variantes couleur (optionnel) — une par ligne : Nom|#hex|url1,url2
+        </label>
+        <textarea
+          name="colors"
+          placeholder={"Bleu marine|#1e3a5f|https://…\nNoir|#111111|https://…"}
+          defaultValue={serializeColors(product?.colors)}
+          className={cn(inputClass, "min-h-20 resize-none font-mono text-xs")}
+        />
       </div>
 
       <div>

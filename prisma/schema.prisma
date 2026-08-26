@@ -29,16 +29,20 @@ model ProductCategory {
 }
 
 model Product {
-  id          String   @id @default(cuid())
-  slug        String   @unique
-  name        String
-  description String
-  price       Int // en DA
-  images      String[]
-  sizes       String[]
-  stock       Int      @default(0)
-  featured    Boolean  @default(false)
-  order       Int      @default(0)
+  id              String   @id @default(cuid())
+  slug            String   @unique
+  name            String
+  description     String
+  price           Int // en DA
+  compareAtPrice  Int? // prix barré avant promo, en DA — null = pas de promo
+  images          String[]
+  sizes           String[]
+  outOfStockSizes String[] @default([]) // tailles temporairement indisponibles
+  colors          Json? // [{ name, hex, images: string[] }] — variantes couleur, optionnel
+  tags            String[] @default([]) // mots-clés de sous-catégorie (ex: "jeans", "montre")
+  stock           Int      @default(0)
+  featured        Boolean  @default(false)
+  order           Int      @default(0)
 
   category   ProductCategory @relation(fields: [categoryId], references: [id])
   categoryId String

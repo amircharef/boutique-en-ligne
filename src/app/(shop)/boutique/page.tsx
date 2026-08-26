@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 export default async function BoutiquePage({
   searchParams,
 }: {
-  searchParams: Promise<{ categorie?: string }>;
+  searchParams: Promise<{ categorie?: string; type?: string }>;
 }) {
-  const { categorie } = await searchParams;
+  const { categorie, type } = await searchParams;
   const [products, categories] = await Promise.all([getAllProducts(), getAllCategories()]);
 
   return (
@@ -22,7 +22,12 @@ export default async function BoutiquePage({
       <p className="mt-2 text-muted">{products.length} articles disponibles</p>
 
       <div className="mt-8">
-        <ShopGrid products={products} categories={categories} initialCategory={categorie} />
+        <ShopGrid
+          products={products}
+          categories={categories}
+          initialCategory={categorie}
+          initialType={type}
+        />
       </div>
     </main>
   );
