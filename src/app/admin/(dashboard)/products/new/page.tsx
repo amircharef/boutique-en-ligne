@@ -13,7 +13,7 @@ export default async function NewProductPage() {
 
   return (
     <div>
-      <h1 className="font-display text-2xl font-semibold">Nouveau produit</h1>
+      <h1 className="font-display text-2xl">Nouveau produit</h1>
       {categories.length === 0 ? (
         <p className="mt-6 text-sm text-muted">
           Crée d&apos;abord une catégorie avant d&apos;ajouter un produit.

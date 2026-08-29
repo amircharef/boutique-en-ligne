@@ -34,7 +34,7 @@ export default async function ProductPage({
       {related.length > 0 && (
         <section className="mt-24">
           <Reveal>
-            <h2 className="font-display text-2xl font-semibold">Vous aimerez aussi</h2>
+            <h2 className="font-display text-2xl">Vous aimerez aussi</h2>
           </Reveal>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {related.map((p, i) => (

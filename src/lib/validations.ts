@@ -41,6 +41,10 @@ export const productFormSchema = z.object({
   description: z.string().min(10, "Description trop courte."),
   price: z.coerce.number().int().min(0, "Prix invalide."),
   compareAtPrice: z.coerce.number().int().min(0).optional().nullable(),
+  material: z
+    .string()
+    .optional()
+    .transform((v) => (v?.trim() ? v.trim() : undefined)),
   images: z
     .string()
     .transform((v) =>

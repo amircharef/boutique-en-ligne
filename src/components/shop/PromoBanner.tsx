@@ -1,7 +1,7 @@
 const messages = [
   "Livraison partout en Algérie",
   "Paiement à la livraison",
-  "Nouvelle collection disponible",
+  "Hoodies premium homme & femme",
   "Échange facile sous 7 jours",
 ];
 

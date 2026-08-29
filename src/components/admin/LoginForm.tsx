@@ -37,8 +37,8 @@ export function LoginForm() {
         <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent text-white">
           <Lock size={20} />
         </div>
-        <h1 className="font-display text-xl font-semibold">Espace admin</h1>
-        <p className="text-sm text-muted">Boutique — accès restreint</p>
+        <h1 className="font-display text-xl">Espace admin</h1>
+        <p className="text-sm text-muted">HOODR. — accès restreint</p>
       </div>
 
       <div>

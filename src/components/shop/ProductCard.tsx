@@ -88,7 +88,7 @@ export function ProductCard({
             {product.featured && (
               <span className="flex items-center gap-1 rounded-full bg-background/90 px-2.5 py-1 text-[10px] font-medium tracking-wide text-accent-dark uppercase backdrop-blur">
                 <Sparkles size={10} />
-                Populaire
+                Best-seller
               </span>
             )}
             {onSale && (
@@ -108,7 +108,7 @@ export function ProductCard({
                 exit={{ y: 14, opacity: 0 }}
                 transition={{ duration: 0.22, ease: "easeOut" }}
                 onClick={quickAdd}
-                className="absolute inset-x-3 bottom-3 flex items-center justify-center gap-2 rounded-full bg-white py-2.5 text-xs font-medium text-foreground shadow-lg transition-colors hover:bg-accent hover:text-white"
+                className="absolute inset-x-3 bottom-3 flex items-center justify-center gap-2 rounded-full bg-white py-2.5 text-xs font-medium text-neutral-900 shadow-lg transition-colors hover:bg-accent hover:text-background"
               >
                 <ShoppingBag size={13} />
                 {added ? "Ajouté ✓" : "Ajout rapide"}
@@ -120,7 +120,7 @@ export function ProductCard({
           <p className="font-mono text-[11px] tracking-wide text-subtle uppercase">
             {product.category.name}
           </p>
-          <h3 className="font-display mt-1 font-semibold">{product.name}</h3>
+          <h3 className="mt-1 text-[15px] font-medium">{product.name}</h3>
           <div className="mt-1.5 flex items-center gap-2">
             <p className="text-sm text-accent-dark">{formatDA(product.price)}</p>
             {onSale && (

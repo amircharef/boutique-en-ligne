@@ -20,7 +20,7 @@ export default async function EditCategoryPage({
 
   return (
     <div>
-      <h1 className="font-display text-2xl font-semibold">Modifier « {category.name} »</h1>
+      <h1 className="font-display text-2xl">Modifier « {category.name} »</h1>
       <div className="mt-8">
         <CategoryForm action={updateCategory.bind(null, id)} category={category} />
       </div>

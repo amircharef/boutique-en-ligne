@@ -6,7 +6,7 @@ export function Testimonials() {
   return (
     <section className="mx-auto max-w-6xl px-6 py-20">
       <Reveal>
-        <h2 className="font-display text-2xl font-semibold">Ce qu&apos;ils en pensent</h2>
+        <h2 className="font-display text-2xl">Ce qu&apos;ils en pensent</h2>
         <p className="mt-2 text-muted">Des clients partout en Algérie, livrés et satisfaits.</p>
       </Reveal>
 

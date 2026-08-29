@@ -20,7 +20,7 @@ export default async function EditProductPage({
 
   return (
     <div>
-      <h1 className="font-display text-2xl font-semibold">Modifier « {product.name} »</h1>
+      <h1 className="font-display text-2xl">Modifier « {product.name} »</h1>
       <div className="mt-8">
         <ProductForm action={updateProduct.bind(null, id)} product={product} categories={categories} />
       </div>

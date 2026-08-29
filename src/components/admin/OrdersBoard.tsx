@@ -68,7 +68,7 @@ export function OrdersBoard({ orders }: { orders: OrderData[] }) {
           <div key={col.key}>
             <div className="mb-3 flex items-center gap-2">
               <Icon size={16} className="text-accent" />
-              <h2 className="font-display text-sm font-semibold">{col.label}</h2>
+              <h2 className="font-display text-sm">{col.label}</h2>
               <span className="rounded-full bg-surface-hover px-2 py-0.5 text-xs text-subtle">
                 {colOrders.length}
               </span>
@@ -86,7 +86,7 @@ export function OrdersBoard({ orders }: { orders: OrderData[] }) {
                 return (
                   <div key={order.id} className="rounded-2xl border border-border bg-surface p-4">
                     <div className="flex items-center justify-between">
-                      <span className="font-display font-semibold">{order.customerName}</span>
+                      <span className="font-display">{order.customerName}</span>
                       <span className="font-mono text-xs text-subtle">
                         {elapsedLabel(order.createdAt)}
                       </span>

@@ -35,6 +35,7 @@ model Product {
   description     String
   price           Int // en DA
   compareAtPrice  Int? // prix barré avant promo, en DA — null = pas de promo
+  material        String? // ex: "80% coton, 20% polyester"
   images          String[]
   sizes           String[]
   outOfStockSizes String[] @default([]) // tailles temporairement indisponibles

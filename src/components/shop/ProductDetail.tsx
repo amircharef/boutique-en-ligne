@@ -2,8 +2,9 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { ImageOff, Minus, Plus, ShoppingBag } from "lucide-react";
+import { Minus, Plus, ShoppingBag } from "lucide-react";
 import { useCart } from "@/components/shop/CartContext";
+import { SpinViewer } from "@/components/shop/SpinViewer";
 import { formatDA, cn } from "@/lib/utils";
 
 interface ColorVariant {
@@ -31,6 +32,7 @@ interface ProductData {
   description: string;
   price: number;
   compareAtPrice?: number | null;
+  material?: string | null;
   images: string[];
   sizes: string[];
   outOfStockSizes?: string[];
@@ -47,7 +49,6 @@ export function ProductDetail({ product }: { product: ProductData }) {
 
   const [colorIndex, setColorIndex] = useState(0);
   const activeImages = colors[colorIndex]?.images ?? product.images;
-  const [activeImage, setActiveImage] = useState(0);
 
   const firstAvailableSize = product.sizes.find((s) => !outOfStockSizes.includes(s));
   const [size, setSize] = useState<string | null>(firstAvailableSize ?? null);
@@ -59,11 +60,6 @@ export function ProductDetail({ product }: { product: ProductData }) {
   const discountPct = onSale
     ? Math.round((1 - product.price / product.compareAtPrice!) * 100)
     : 0;
-
-  function selectColor(i: number) {
-    setColorIndex(i);
-    setActiveImage(0);
-  }
 
   function handleAdd() {
     addItem(
@@ -83,44 +79,14 @@ export function ProductDetail({ product }: { product: ProductData }) {
   return (
     <div className="grid gap-10 lg:grid-cols-2">
       <div>
-        <div className="aspect-3/4 overflow-hidden rounded-2xl bg-surface-hover">
-          {activeImages[activeImage] ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={activeImages[activeImage]}
-              alt={product.name}
-              className="h-full w-full object-cover"
-            />
-          ) : (
-            <div className="flex h-full w-full items-center justify-center text-subtle">
-              <ImageOff size={48} strokeWidth={1} />
-            </div>
-          )}
-        </div>
-        {activeImages.length > 1 && (
-          <div className="mt-3 flex gap-2">
-            {activeImages.map((img, i) => (
-              <button
-                key={img + i}
-                onClick={() => setActiveImage(i)}
-                className={cn(
-                  "h-16 w-16 shrink-0 overflow-hidden rounded-lg border-2",
-                  i === activeImage ? "border-accent" : "border-transparent",
-                )}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={img} alt="" className="h-full w-full object-cover" />
-              </button>
-            ))}
-          </div>
-        )}
+        <SpinViewer images={activeImages} alt={product.name} />
       </div>
 
       <div>
         <p className="font-mono text-xs tracking-wide text-subtle uppercase">
           {product.category.name}
         </p>
-        <h1 className="font-display mt-2 text-3xl font-semibold tracking-tight">
+        <h1 className="font-display mt-2 text-3xl tracking-tight">
           {product.name}
         </h1>
         <div className="mt-3 flex items-center gap-3">
@@ -137,6 +103,11 @@ export function ProductDetail({ product }: { product: ProductData }) {
           )}
         </div>
         <p className="mt-6 text-muted">{product.description}</p>
+        {product.material && (
+          <p className="mt-2 font-mono text-xs tracking-wide text-subtle uppercase">
+            {product.material}
+          </p>
+        )}
 
         {colors.length > 0 && (
           <div className="mt-8">
@@ -147,7 +118,7 @@ export function ProductDetail({ product }: { product: ProductData }) {
               {colors.map((c, i) => (
                 <button
                   key={c.name}
-                  onClick={() => selectColor(i)}
+                  onClick={() => setColorIndex(i)}
                   aria-label={c.name}
                   title={c.name}
                   className={cn(
@@ -216,7 +187,7 @@ export function ProductDetail({ product }: { product: ProductData }) {
           <button
             onClick={handleAdd}
             disabled={outOfStock}
-            className="flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-sm font-medium text-white transition-transform disabled:opacity-40 hover:scale-[1.02] active:scale-[0.98]"
+            className="flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-sm font-medium text-background transition-transform disabled:opacity-40 hover:scale-[1.02] active:scale-[0.98]"
           >
             <ShoppingBag size={16} />
             {outOfStock ? "Rupture de stock" : added ? "Ajouté au panier ✓" : "Ajouter au panier"}

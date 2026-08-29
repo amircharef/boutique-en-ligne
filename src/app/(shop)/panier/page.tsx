@@ -12,11 +12,11 @@ export default function CartPage() {
     return (
       <main className="mx-auto flex max-w-2xl flex-col items-center px-6 py-24 text-center">
         <ShoppingBag size={40} className="text-subtle" strokeWidth={1} />
-        <h1 className="font-display mt-4 text-2xl font-semibold">Ton panier est vide</h1>
+        <h1 className="font-display mt-4 text-2xl">Ton panier est vide</h1>
         <p className="mt-2 text-muted">Découvre la boutique pour commencer.</p>
         <Link
           href="/boutique"
-          className="mt-6 rounded-full bg-accent px-6 py-3 text-sm font-medium text-white"
+          className="mt-6 rounded-full bg-accent px-6 py-3 text-sm font-medium text-background"
         >
           Voir la boutique
         </Link>
@@ -26,7 +26,7 @@ export default function CartPage() {
 
   return (
     <main className="mx-auto max-w-3xl px-6 py-16">
-      <h1 className="font-display text-3xl font-semibold tracking-tight">Ton panier</h1>
+      <h1 className="font-display text-3xl tracking-tight">Ton panier</h1>
 
       <div className="mt-8 space-y-4">
         {items.map((item) => (
@@ -78,12 +78,12 @@ export default function CartPage() {
 
       <div className="mt-8 flex items-center justify-between border-t border-border pt-6">
         <span className="text-muted">Total</span>
-        <span className="font-display text-xl font-semibold">{formatDA(total)}</span>
+        <span className="font-display text-xl">{formatDA(total)}</span>
       </div>
 
       <Link
         href="/commande"
-        className="mt-6 flex w-full items-center justify-center rounded-full bg-accent px-6 py-3.5 text-sm font-medium text-white transition-transform hover:scale-[1.01] active:scale-[0.99]"
+        className="mt-6 flex w-full items-center justify-center rounded-full bg-accent px-6 py-3.5 text-sm font-medium text-background transition-transform hover:scale-[1.01] active:scale-[0.99]"
       >
         Passer la commande
       </Link>

@@ -37,7 +37,7 @@ export function OrderStatusTracker({ initialOrder }: { initialOrder: OrderData }
     return (
       <main className="mx-auto flex min-h-[60vh] max-w-md flex-col items-center justify-center px-6 text-center">
         <XCircle size={40} className="text-status-cancelled" />
-        <h1 className="font-display mt-4 text-xl font-semibold">Commande annulée</h1>
+        <h1 className="font-display mt-4 text-xl">Commande annulée</h1>
         <p className="mt-2 text-sm text-muted">
           Cette commande a été annulée. Contacte-nous si besoin.
         </p>
@@ -50,7 +50,7 @@ export function OrderStatusTracker({ initialOrder }: { initialOrder: OrderData }
       <p className="text-center font-mono text-xs text-subtle uppercase">
         Commande #{order.id.slice(-6)}
       </p>
-      <h1 className="font-display mt-2 text-center text-2xl font-semibold">
+      <h1 className="font-display mt-2 text-center text-2xl">
         Merci, {order.customerName.split(" ")[0]} !
       </h1>
       <p className="mt-1 text-center text-sm text-muted">
@@ -68,7 +68,7 @@ export function OrderStatusTracker({ initialOrder }: { initialOrder: OrderData }
                   className={cn(
                     "flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 transition-colors",
                     active
-                      ? "border-accent bg-accent text-white"
+                      ? "border-accent bg-accent text-background"
                       : "border-border bg-surface text-subtle",
                   )}
                 >

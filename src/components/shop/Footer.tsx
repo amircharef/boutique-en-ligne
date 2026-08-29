@@ -3,10 +3,9 @@ import { Mail, MapPin, Phone } from "lucide-react";
 
 const shopLinks = [
   { label: "Accueil", href: "/" },
-  { label: "Toute la boutique", href: "/boutique" },
-  { label: "Femme", href: "/boutique?categorie=femme" },
+  { label: "Tous les hoodies", href: "/boutique" },
   { label: "Homme", href: "/boutique?categorie=homme" },
-  { label: "Accessoires", href: "/boutique?categorie=accessoires" },
+  { label: "Femme", href: "/boutique?categorie=femme" },
 ];
 
 const socials = ["Instagram", "Facebook", "TikTok"];
@@ -16,11 +15,11 @@ export function Footer() {
     <footer className="border-t border-border">
       <div className="mx-auto grid max-w-6xl gap-10 px-6 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <p className="font-display text-xl font-semibold text-foreground">
-            Boutique<span className="text-accent">.</span>
+          <p className="font-display text-xl text-foreground">
+            HOODR<span className="text-accent">.</span>
           </p>
           <p className="mt-3 max-w-xs text-sm text-muted">
-            Mode et accessoires sélectionnés avec soin, livrés partout en Algérie — paiement à la
+            Hoodies premium pour homme et femme, livrés partout en Algérie — paiement à la
             livraison.
           </p>
           <div className="mt-5 flex flex-wrap items-center gap-2">
@@ -71,7 +70,7 @@ export function Footer() {
             </li>
             <li className="flex items-center gap-2.5">
               <Mail size={15} className="shrink-0 text-accent" />
-              contact@boutique.dz
+              contact@hoodr.dz
             </li>
           </ul>
         </div>
@@ -79,7 +78,7 @@ export function Footer() {
 
       <div className="border-t border-border py-6">
         <div className="mx-auto flex max-w-6xl flex-col items-center gap-2 px-6 text-center text-xs text-subtle sm:flex-row sm:justify-between sm:text-left">
-          <p>© {new Date().getFullYear()} Boutique. Tous droits réservés.</p>
+          <p>© {new Date().getFullYear()} HOODR. Tous droits réservés.</p>
           <p>Paiement à la livraison · Livraison partout en Algérie</p>
         </div>
       </div>

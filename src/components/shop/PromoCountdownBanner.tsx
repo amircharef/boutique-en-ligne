@@ -46,11 +46,11 @@ export function PromoCountdownBanner() {
               <Percent size={12} />
               Offre limitée
             </span>
-            <h2 className="font-display mt-3 text-2xl font-semibold sm:text-3xl">
-              Soldes de fin d&apos;été — jusqu&apos;à -20%
+            <h2 className="font-display mt-3 text-3xl tracking-wide sm:text-4xl">
+              -20% SUR LA NOUVELLE COLLECTION
             </h2>
             <p className="mt-1.5 text-sm text-white/80">
-              Sur une sélection d&apos;articles. Paiement à la livraison, comme toujours.
+              Sur une sélection de hoodies. Paiement à la livraison, comme toujours.
             </p>
           </div>
 
@@ -61,7 +61,7 @@ export function PromoCountdownBanner() {
                   key={u.label}
                   className="flex w-14 flex-col items-center rounded-xl bg-white/15 py-2 backdrop-blur"
                 >
-                  <span className="font-display text-xl font-semibold tabular-nums">
+                  <span className="font-display text-xl tabular-nums">
                     {u.value === undefined ? "--" : pad(u.value)}
                   </span>
                   <span className="text-[10px] tracking-wide text-white/70 uppercase">

@@ -7,40 +7,29 @@ const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 const db = new PrismaClient({ adapter });
 
 async function main() {
+  // Reset complet : le catalogue change entièrement à chaque pivot de concept boutique.
+  await db.orderItem.deleteMany();
+  await db.order.deleteMany();
+  await db.product.deleteMany();
+  await db.productCategory.deleteMany();
+
   const productIdByKey = new Map<string, string>();
 
   for (const [catIndex, category] of demoCategories.entries()) {
-    const catRecord = await db.productCategory.upsert({
-      where: { id: category.id },
-      update: { name: category.name, slug: category.slug, order: catIndex },
-      create: { id: category.id, name: category.name, slug: category.slug, order: catIndex },
+    const catRecord = await db.productCategory.create({
+      data: { id: category.id, name: category.name, slug: category.slug, order: catIndex },
     });
 
     for (const [prodIndex, product] of category.products.entries()) {
-      const record = await db.product.upsert({
-        where: { id: product.id },
-        update: {
-          slug: product.slug,
-          name: product.name,
-          description: product.description,
-          price: product.price,
-          compareAtPrice: product.compareAtPrice,
-          images: product.images,
-          sizes: product.sizes,
-          outOfStockSizes: product.outOfStockSizes,
-          tags: product.tags,
-          stock: product.stock,
-          featured: product.featured,
-          categoryId: catRecord.id,
-          order: prodIndex,
-        },
-        create: {
+      const record = await db.product.create({
+        data: {
           id: product.id,
           slug: product.slug,
           name: product.name,
           description: product.description,
           price: product.price,
           compareAtPrice: product.compareAtPrice,
+          material: product.material,
           images: product.images,
           sizes: product.sizes,
           outOfStockSizes: product.outOfStockSizes,
@@ -64,7 +53,7 @@ async function main() {
       city: "Alger",
       status: "new" as const,
       note: null,
-      items: [{ productId: "prod-robe-imprimee", size: "M", quantity: 1 }],
+      items: [{ productId: "prod-hoodie-oversize-noir", size: "M", quantity: 1 }],
     },
     {
       id: "order-demo-2",
@@ -75,8 +64,8 @@ async function main() {
       status: "confirmed" as const,
       note: "Livrer après 18h si possible",
       items: [
-        { productId: "prod-costume-cravate", size: "L", quantity: 1 },
-        { productId: "prod-montre-classique", size: null, quantity: 1 },
+        { productId: "prod-hoodie-print-montrouge", size: "L", quantity: 1 },
+        { productId: "prod-hoodie-zippe-bleu", size: "M", quantity: 1 },
       ],
     },
     {
@@ -87,23 +76,13 @@ async function main() {
       city: "Constantine",
       status: "shipped" as const,
       note: null,
-      items: [{ productId: "prod-sac-a-main", size: null, quantity: 1 }],
+      items: [{ productId: "prod-hoodie-lapin-rose", size: "S", quantity: 1 }],
     },
   ];
 
   for (const order of demoOrders) {
-    await db.orderItem.deleteMany({ where: { orderId: order.id } });
-    await db.order.upsert({
-      where: { id: order.id },
-      update: {
-        customerName: order.customerName,
-        phone: order.phone,
-        address: order.address,
-        city: order.city,
-        status: order.status,
-        note: order.note,
-      },
-      create: {
+    await db.order.create({
+      data: {
         id: order.id,
         customerName: order.customerName,
         phone: order.phone,

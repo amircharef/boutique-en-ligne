@@ -25,8 +25,8 @@ export function AdminSidebar() {
   return (
     <aside className="flex h-full w-60 shrink-0 flex-col border-r border-border bg-surface">
       <div className="flex h-16 items-center border-b border-border px-6">
-        <Link href="/admin" className="font-display text-lg font-semibold tracking-tight">
-          Boutique<span className="text-accent">.</span>
+        <Link href="/admin" className="font-display text-lg tracking-tight">
+          HOODR<span className="text-accent">.</span>
           <span className="ml-2 font-mono text-xs text-subtle">admin</span>
         </Link>
       </div>

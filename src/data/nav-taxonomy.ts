@@ -20,33 +20,19 @@ export const navTaxonomy: NavCategory[] = [
     label: "Homme",
     groups: [
       {
-        label: "Vêtements",
+        label: "Coupe",
         items: [
-          { label: "Survêtements", tag: "survetements" },
-          { label: "Pantalons", tag: "pantalons" },
-          { label: "Sweats", tag: "sweats" },
-          { label: "Jeans", tag: "jeans" },
-          { label: "Chemises", tag: "chemises" },
-          { label: "Costumes", tag: "costumes" },
-          { label: "Blazers", tag: "blazers" },
+          { label: "Oversize", tag: "oversize" },
+          { label: "Classique", tag: "classique" },
+          { label: "Zippé", tag: "zippe" },
         ],
       },
       {
-        label: "Chaussures",
+        label: "Style",
         items: [
-          { label: "Baskets", tag: "baskets" },
-          { label: "Chaussures de ville", tag: "chaussures-ville" },
-          { label: "Sandales", tag: "sandales" },
-        ],
-      },
-      {
-        label: "Accessoires",
-        items: [
-          { label: "Sacoches", tag: "sacoches" },
-          { label: "Montres", tag: "montres" },
-          { label: "Casquettes", tag: "casquettes" },
-          { label: "Ceintures", tag: "ceintures" },
-          { label: "Bonnets", tag: "bonnets" },
+          { label: "Uni", tag: "uni" },
+          { label: "Imprimé", tag: "imprime" },
+          { label: "Dos graphique", tag: "print-dos" },
         ],
       },
     ],
@@ -56,61 +42,18 @@ export const navTaxonomy: NavCategory[] = [
     label: "Femme",
     groups: [
       {
-        label: "Vêtements",
+        label: "Coupe",
         items: [
-          { label: "Robes", tag: "robes" },
-          { label: "Jupes", tag: "jupes" },
-          { label: "Chemisiers", tag: "chemisiers" },
-          { label: "Blazers", tag: "blazers" },
-          { label: "Pantalons", tag: "pantalons" },
-          { label: "Pulls", tag: "pulls" },
+          { label: "Oversize", tag: "oversize" },
+          { label: "Crop", tag: "crop" },
+          { label: "Classique", tag: "classique" },
         ],
       },
       {
-        label: "Chaussures",
+        label: "Style",
         items: [
-          { label: "Escarpins", tag: "escarpins" },
-          { label: "Baskets", tag: "baskets" },
-          { label: "Sandales", tag: "sandales" },
-          { label: "Bottes", tag: "bottes" },
-        ],
-      },
-      {
-        label: "Accessoires",
-        items: [
-          { label: "Sacs à main", tag: "sacs" },
-          { label: "Montres", tag: "montres" },
-          { label: "Bijoux", tag: "bijoux" },
-          { label: "Écharpes", tag: "echarpes" },
-        ],
-      },
-    ],
-  },
-  {
-    slug: "accessoires",
-    label: "Accessoires",
-    groups: [
-      {
-        label: "Pour lui",
-        items: [
-          { label: "Sacoches", tag: "sacoches" },
-          { label: "Ceintures", tag: "ceintures" },
-          { label: "Casquettes", tag: "casquettes" },
-        ],
-      },
-      {
-        label: "Pour elle",
-        items: [
-          { label: "Sacs à main", tag: "sacs" },
-          { label: "Bijoux", tag: "bijoux" },
-          { label: "Écharpes", tag: "echarpes" },
-        ],
-      },
-      {
-        label: "Mixte",
-        items: [
-          { label: "Montres", tag: "montres" },
-          { label: "Bonnets", tag: "bonnets" },
+          { label: "Uni", tag: "uni" },
+          { label: "Imprimé", tag: "imprime" },
         ],
       },
     ],

@@ -14,19 +14,14 @@ interface CategoryTileData {
 
 const subLinks: Record<string, { label: string; type: string }[]> = {
   homme: [
-    { label: "Vêtements", type: "jeans" },
-    { label: "Chaussures", type: "baskets" },
-    { label: "Accessoires", type: "montres" },
+    { label: "Oversize", type: "oversize" },
+    { label: "Zippé", type: "zippe" },
+    { label: "Imprimé", type: "imprime" },
   ],
   femme: [
-    { label: "Vêtements", type: "robes" },
-    { label: "Chaussures", type: "escarpins" },
-    { label: "Accessoires", type: "sacs" },
-  ],
-  accessoires: [
-    { label: "Sacs", type: "sacs" },
-    { label: "Montres", type: "montres" },
-    { label: "Ceintures", type: "ceintures" },
+    { label: "Oversize", type: "oversize" },
+    { label: "Crop", type: "crop" },
+    { label: "Imprimé", type: "imprime" },
   ],
 };
 
@@ -58,7 +53,7 @@ export function CategoryTile({ category }: { category: CategoryTileData }) {
 
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex items-center justify-between p-5">
         <div>
-          <p className="font-display text-xl font-semibold text-white">{category.name}</p>
+          <p className="text-2xl font-semibold text-white">{category.name}</p>
           <p className="text-xs text-white/70">
             {category.count} article{category.count > 1 ? "s" : ""}
           </p>
@@ -83,11 +78,11 @@ export function CategoryTile({ category }: { category: CategoryTileData }) {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.25, delay: i * 0.06 }}
-                className="w-full max-w-[200px]"
+                className="w-full max-w-50"
               >
                 <Link
                   href={`/boutique?categorie=${category.slug}&type=${link.type}`}
-                  className="block w-full rounded-full bg-white/95 py-2.5 text-center text-xs font-medium text-foreground shadow-lg transition-colors hover:bg-accent hover:text-white"
+                  className="block w-full rounded-full bg-white/95 py-2.5 text-center text-xs font-medium text-neutral-900 shadow-lg transition-colors hover:bg-accent hover:text-background"
                 >
                   {link.label}
                 </Link>

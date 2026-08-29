@@ -65,7 +65,7 @@ export default function CheckoutPage() {
 
   return (
     <main className="mx-auto max-w-2xl px-6 py-16">
-      <h1 className="font-display text-3xl font-semibold tracking-tight">Finaliser la commande</h1>
+      <h1 className="font-display text-3xl tracking-tight">Finaliser la commande</h1>
 
       <div className="mt-4 flex items-center gap-2 rounded-lg bg-accent/10 px-4 py-2.5 text-sm text-accent-dark">
         <Truck size={16} />
@@ -107,13 +107,13 @@ export default function CheckoutPage() {
 
         <div className="flex items-center justify-between border-t border-border pt-5">
           <span className="text-muted">Total</span>
-          <span className="font-display text-lg font-semibold">{formatDA(total)}</span>
+          <span className="font-display text-lg">{formatDA(total)}</span>
         </div>
 
         <button
           type="submit"
           disabled={submitting}
-          className="flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-3.5 text-sm font-medium text-white transition-transform disabled:opacity-50 hover:scale-[1.01] active:scale-[0.99]"
+          className="flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-3.5 text-sm font-medium text-background transition-transform disabled:opacity-50 hover:scale-[1.01] active:scale-[0.99]"
         >
           {submitting && <Loader2 className="animate-spin" size={16} />}
           Confirmer la commande

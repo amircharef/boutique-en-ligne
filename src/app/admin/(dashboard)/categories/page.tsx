@@ -17,7 +17,7 @@ export default async function AdminCategoriesPage() {
     <div>
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-display text-2xl font-semibold">Catégories</h1>
+          <h1 className="font-display text-2xl">Catégories</h1>
           <p className="mt-1 text-sm text-muted">
             {categories.length} catégorie{categories.length > 1 ? "s" : ""}
           </p>
@@ -44,7 +44,7 @@ export default async function AdminCategoriesPage() {
             className="flex items-center justify-between gap-4 rounded-2xl border border-border bg-surface p-5"
           >
             <div>
-              <h3 className="font-display font-semibold">{category.name}</h3>
+              <h3 className="font-display">{category.name}</h3>
               <p className="mt-0.5 font-mono text-xs text-subtle">/{category.slug}</p>
             </div>
             <div className="flex items-center gap-2">

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function NewCategoryPage() {
   return (
     <div>
-      <h1 className="font-display text-2xl font-semibold">Nouvelle catégorie</h1>
+      <h1 className="font-display text-2xl">Nouvelle catégorie</h1>
       <div className="mt-8">
         <CategoryForm action={createCategory} />
       </div>

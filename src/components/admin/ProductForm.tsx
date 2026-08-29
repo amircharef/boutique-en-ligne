@@ -31,6 +31,7 @@ interface ProductData {
   description: string;
   price: number;
   compareAtPrice?: number | null;
+  material?: string | null;
   images: string[];
   sizes: string[];
   outOfStockSizes?: string[];
@@ -105,6 +106,16 @@ export function ProductForm({
       </div>
 
       <div>
+        <label className={labelClass}>Matière (optionnel)</label>
+        <input
+          name="material"
+          placeholder="80% coton, 20% polyester"
+          defaultValue={product?.material ?? undefined}
+          className={inputClass}
+        />
+      </div>
+
+      <div>
         <label className={labelClass}>Description *</label>
         <textarea
           name="description"
@@ -170,7 +181,9 @@ export function ProductForm({
       </div>
 
       <div>
-        <label className={labelClass}>Images (une URL par ligne) *</label>
+        <label className={labelClass}>
+          Photos (une URL par ligne) * — 2+ photos activent le visualiseur rotatif (glisser)
+        </label>
         <textarea
           name="images"
           required

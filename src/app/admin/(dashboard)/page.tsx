@@ -19,23 +19,23 @@ export default async function AdminOverviewPage() {
 
   return (
     <div>
-      <h1 className="font-display text-2xl font-semibold">Vue d&apos;ensemble</h1>
+      <h1 className="font-display text-2xl">Vue d&apos;ensemble</h1>
       <p className="mt-1 text-sm text-muted">Bienvenue dans l&apos;espace admin de la boutique.</p>
 
       <div className="mt-8 grid gap-4 sm:grid-cols-3">
         <div className="rounded-2xl border border-border bg-surface p-6">
           <p className="font-mono text-xs text-subtle uppercase">Commandes en cours</p>
-          <p className="font-display mt-2 text-3xl font-semibold">{activeOrders.length}</p>
+          <p className="font-display mt-2 text-3xl">{activeOrders.length}</p>
         </div>
         <div className="rounded-2xl border border-border bg-surface p-6">
           <p className="font-mono text-xs text-subtle uppercase">Chiffre du jour</p>
-          <p className="font-display mt-2 text-3xl font-semibold">
+          <p className="font-display mt-2 text-3xl">
             {formatDA(todayStats.revenue)}
           </p>
         </div>
         <div className="rounded-2xl border border-border bg-surface p-6">
           <p className="font-mono text-xs text-subtle uppercase">Produits au catalogue</p>
-          <p className="font-display mt-2 text-3xl font-semibold">{productCount}</p>
+          <p className="font-display mt-2 text-3xl">{productCount}</p>
         </div>
       </div>
 

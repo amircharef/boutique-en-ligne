@@ -12,7 +12,7 @@ export default async function AdminOrdersPage() {
 
   return (
     <div>
-      <h1 className="font-display text-2xl font-semibold">Commandes</h1>
+      <h1 className="font-display text-2xl">Commandes</h1>
       <p className="mt-1 text-sm text-muted">Mise à jour automatique toutes les 8 secondes.</p>
 
       <div className="mt-8">

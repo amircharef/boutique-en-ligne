@@ -18,7 +18,7 @@ export default async function AdminProductsPage() {
     <div>
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-display text-2xl font-semibold">Produits</h1>
+          <h1 className="font-display text-2xl">Produits</h1>
           <p className="mt-1 text-sm text-muted">
             {products.length} produit{products.length > 1 ? "s" : ""} au catalogue
           </p>
@@ -57,7 +57,7 @@ export default async function AdminProductsPage() {
 
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2">
-                <h3 className="truncate font-display font-semibold">{product.name}</h3>
+                <h3 className="truncate font-display">{product.name}</h3>
                 {product.featured && (
                   <Star size={13} className="shrink-0 fill-accent text-accent" />
                 )}

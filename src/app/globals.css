@@ -1,32 +1,54 @@
 @import "tailwindcss";
 
 :root {
-  /* Surfaces */
-  --background: #faf8f5;
-  --surface: #ffffff;
-  --surface-hover: #f2ede5;
-  --border: #e8e2d8;
-  --border-hover: #d8cfc0;
+  /* Surfaces — thème boutique (sombre, premium) */
+  --background: #131209;
+  --surface: #1c1a12;
+  --surface-hover: #26231a;
+  --border: #34301f;
+  --border-hover: #494330;
 
   /* Text */
-  --foreground: #1a1816;
-  --muted: #6b6560;
-  --subtle: #a39c92;
+  --foreground: #f6f2e6;
+  --muted: #aca687;
+  --subtle: #726c53;
 
   /* Accent */
-  --accent: #a8814f;
-  --accent-dark: #8a6a3d;
+  --accent: #9cb968;
+  --accent-dark: #7c9a4c;
 
   /* Status */
+  --status-new: #5b9bf0;
+  --status-confirmed: #9cb968;
+  --status-shipped: #a690d9;
+  --status-delivered: #6bc177;
+  --status-cancelled: #e5605f;
+
+  /* Fonts (mapped from next/font variables in layout.tsx) */
+  --font-display: var(--font-anton);
+  --font-sans: var(--font-inter);
+}
+
+/* Thème clair, réservé à l'espace admin (voir src/app/admin/layout.tsx) */
+.admin-theme {
+  --background: #f1ece0;
+  --surface: #ffffff;
+  --surface-hover: #e6ddc8;
+  --border: #ddd2b6;
+  --border-hover: #c7b891;
+
+  --foreground: #1c1a14;
+  --muted: #5c5745;
+  --subtle: #938c73;
+
+  --accent: #55663c;
+  --accent-dark: #3e4b2b;
+
   --status-new: #3987e5;
-  --status-confirmed: #a8814f;
+  --status-confirmed: #55663c;
   --status-shipped: #7c6aa8;
   --status-delivered: #4e7a51;
   --status-cancelled: #c23b3b;
-
-  /* Fonts (mapped from next/font variables in layout.tsx) */
-  --font-display: var(--font-playfair);
-  --font-sans: var(--font-inter);
 }
 
 @theme inline {
@@ -85,8 +107,22 @@ body {
   animation: marquee 24s linear infinite;
 }
 
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 18s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee {
+  .animate-marquee,
+  .animate-spin-slow {
     animation: none;
   }
 }
